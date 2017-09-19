@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>tabs</title>
+    <style>
+        #tabs .tab {
+            display: inline-block;
+            padding: 5px 10px;
+            cursor: pointer;
+            z-index: 100;
+        }
+        #tabs .whiteborder {
+
+        }
+        #tabs .tabContent {
+            width: 50%;
+            padding: 10px;
+            position: absolute;
+            top: 37px;
+            z-index: 10;
+        }
+        #tabs .hide {
+            display: none;
+        }
+        #tabs .show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="tabs">
+        <div class="tab whiteborder">Tab 1</div>
+        <div class="tab">Tab 2</div>
+        <div class="tab">Tab 3</div>
+        <div class="tabContent">
+            Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit. Dolor quas tempora, quod deserunt laboriosam
+            perspiciatis molestiae autem inventore consectetur delectus. Nemo
+            perferendis facilis temporibus omnis laudantium numquam
+            consequuntur, magnam nisi.
+        </div>
+        <div class="tabContent">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+             Enim minus facere ullam nesciunt neque consequuntur quasi!
+             Quae corrupti dolore nisi blanditiis, provident. Expedita
+              consectetur, illo accusamus temporibus error minima cupiditate.
+        </div>
+        <div class="tabContent">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+             Non magnam deserunt quis corrupti aliquid nulla aut, itaque
+             dolore cum minus ipsa est facilis, rem nesciunt, soluta hic error,
+              ad odio.
+        </div>
+    </div>
+    <script>
+        let tab;
+        let tabContent;
+
+        window.onload = function() {
+            tab = document.querySelectorAll('.tab');
+            tabContent = document.querySelectorAll('.tabContent');
+            hideTabsContent(1);
+        }
+        function hideTabsContent(index) {
+            for (let i = index; i < tabContent.length; i++) {
+                tabContent[i].classList.remove('show');
+                tabContent[i].classList.add('hide');
+                tab[i].classList.remove('whiteborder');
+            }
+        }
+        document.querySelector('#tabs').onclick = function(event) {
+            if (event.target.className == 'tab') {
+                for (let i = 0; i < tab.length; i++) {
+                    if (event.target == tab[i]) {
+                        showTabsContent(i);
+                        break ;
+                    }
+                }
+            }
+        };
+        function showTabsContent(index) {
+            if (tabContent[index].classList.contains('hide')) {
+                hideTabsContent(0);
+                tab[index].classList.add('whiteborder');
+                tabContent[index].classList.remove('hide');
+                tabContent[index].classList.add('ahow');
+            }
+        }
+    </script>
+</body>
+</html>

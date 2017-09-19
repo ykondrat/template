@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>tabs</title>
+    <style>
+        .tabs {
+            position: relative;
+            width: 600px;
+            height: 144px;
+            overflow: hidden;
+        }
+
+        .tabs .tabs-header {
+            display: flex;
+        }
+
+        .tabs .tabs-header .tab-h {
+            display: flex;
+            font-family: "Roboto", serif;
+            font-size: 14px;
+            text-transform: uppercase;
+            padding: 10px;
+            color: #f0f0f0;
+            background-color: #5c6169;
+            cursor: pointer;
+            user-select: none;
+            transition: 0.2s all ease-out;
+        }
+
+        .tabs .tabs-header div:nth-child(1) {
+            color: black;
+            background-color: #f0f0f0;
+        }
+
+        .tabs .tabs-header div:nth-child(1):hover {
+            color: black;
+            background-color: #f0f0f0;
+            transition: 0.1s all ease-out;
+        }
+
+        .tabs .tabs-body {
+            width: 100%;
+            height: 120px;
+            background-color: #f0f0f0;
+        }
+
+        .tabs .tabs-body .tab-b {
+            position: absolute;
+            top: 80px;
+            padding: 15px;
+            opacity: 0;
+            transition: 0.3s all ease-out;
+        }
+
+        .tabs .tabs-body div:nth-child(1) {
+            opacity: 1;
+            top: 34px;
+        }
+    </style>
+</head>
+<body>
+    <div class="tabs">
+        <div class="tabs-header">
+            <div class="tab-h" data-tab="0">Tab 1</div>
+            <div class="tab-h" data-tab="1">Tab 2</div>
+            <div class="tab-h" data-tab="2">Tab 3</div>
+        </div>
+        <div class="tabs-body">
+            <div class="tab-b">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Aperiam asperiores doloribus ducimus explicabo magnam nobis
+                obcaecati, porro quas recusandae similique vel voluptas
+                voluptatibus voluptatum! Consequatur harum hic ipsum nisi
+                perspiciatis!
+            </div>
+            <div class="tab-b">
+                Alias excepturi nam quo rem reprehenderit sit sunt ut
+                voluptatibus! Accusamus dolore eligendi error eveniet
+                excepturi iste labore, laboriosam minima minus natus
+                nostrum perspiciatis possimus reiciendis sint tempore.
+                Provident, sit!
+            </div>
+            <div class="tab-b">
+                Ab adipisci aliquid aut commodi cum, dignissimos distinctio
+                ducimus earum fugit id iste iusto laborum libero magni minima
+                mollitia nostrum odio pariatur porro quidem saepe sequi sunt
+                ullam velit voluptatibus.
+            </div>
+        </div>
+    </div>
+    <script>
+        window.onload = function() {
+            let tabsHeader = document.querySelector(".tabs-header");
+            let tabH = document.getElementsByClassName("tab-h");
+            let tabBody = document.getElementsByClassName("tab-b");
+
+            tabsHeader.addEventListener("click", fTabs);
+
+            function fTabs(event) {
+                if (event.target.className == "tab-h") {
+                    let dataTab = event.target.dataset.tab;
+
+                    for (var i = 0; i < tabBody.length; i++) {
+                        if (dataTab == i) {
+                            tabBody[i].style.opacity = "1";
+                            tabBody[i].style.top = "34px";
+
+                            event.target.style.color = "black";
+                            event.target.style.backgroundColor = "#f0f0f0";
+                        } else {
+                            tabBody[i].style.opacity = "0";
+                            tabBody[i].style.top = "80px";
+                            for (var h = 0; h < tabH.length; h++) {
+                                if (tabH[h].getAttribute("data-tab") != dataTab) {
+                                    tabH[h].style.color = "#f0f0f0";
+                                    tabH[h].style.backgroundColor = "#5c6169";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+</body>
+</html>
