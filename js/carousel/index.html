@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>carousel</title>
+    <style>
+        body {
+            margin: 0;   
+        }
+        .slide-content {
+            width: 100%;
+
+            position: relative;
+            margin: 0;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: .6s ease;
+            border-radius: 0 3px 3px 0;
+        }
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.75);
+        }
+        .img-text {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+        .dot {
+            cursor: pointer;
+            width: 12px;
+            height: 12px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: .6s ease;
+        }
+        .active, .dor:hover{
+            background-color: #717171;
+        }
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+        @-webkit-keyframes fade{
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
+        }
+        @keyframes fade{
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-content">
+        <div class="slides fade">
+            <img src="https://static.pexels.com/photos/20974/pexels-photo.jpg" style="width: 100%;" alt="">
+            <div class="img-text">
+                Text
+            </div>
+        </div>
+
+        <div class="slides fade">
+            <img src="http://uk.france.fr/sites/default/files/imagecache/ATF_Image_bandeau_v2/la_france_cote_nature_1.jpg" style="width: 100%;" alt="">
+            <div class="img-text">
+                Text
+            </div>
+        </div>
+
+        <div class="slides fade">
+            <img src="http://www.interactive-english.ru/opisaniya-foto/image/?view=image&format=raw&type=orig&id=72" style="width: 100%;" alt="">
+            <div class="img-text">
+                Text
+            </div>
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">&#10094</a>
+        <a class="next" onclick="plusSlides(1)">&#10095</a>
+    </div><br />
+    <div style="text-align: center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+    <script>
+        let slideIndex = 1;
+
+        showSlide(slideIndex);
+
+        function plusSlides(index) {
+            showSlide(slideIndex += index);
+        }
+        function currentSlide(index) {
+            showSlide(slideIndex = index);
+        }
+        function showSlide(index) {
+            let i;
+            let slides = document.getElementsByClassName('slides');
+            let dots = document.getElementsByClassName('dot');
+
+            if (index > slides.length) {
+                slideIndex = 1;
+            }
+            if (index < 1) {
+                slideIndex = slides.length;
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = 'none';
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace('active', '');
+            }
+            slides[slideIndex - 1].style.display = 'block';
+            dots[slideIndex - 1].className += ' active';
+        }
+    </script>
+</body>
+</html>

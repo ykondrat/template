@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Modal</title>
+    <style>
+        .btn-success {
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            background-color: white;
+            transition: .3s;
+            border: none;
+            font-size: 1rem;
+            -webkit-box-shadow: inset 0px 0px 0px 2px rgba(125,235,124,0.75);
+            -moz-box-shadow: inset 0px 0px 0px 2px rgba(125,235,124,0.75);
+            box-shadow: inset 0px 0px 0px 2px rgba(125,235,124,0.75);
+        }
+        .btn-success:hover {
+            background-color: #7DEB7C;
+        }
+        .modal-window {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.75);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <div class="content">
+                <button class="btn btn-success"type="button" name="button" id="modal-btn">Open Modal</button>
+                <div id="modal" class="modal-window">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p>modal window</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let modal = document.getElementById('modal');
+        let btn = document.getElementById('modal-btn');
+        let span = document.getElementsByClassName('close')[0];
+
+        btn.addEventListener('click', function (){
+            modal.style.display = 'block';
+        });
+        span.addEventListener('click', function (){
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        })
+    </script>
+</body>
+</html>

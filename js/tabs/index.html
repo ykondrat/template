@@ -6,20 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>tabs</title>
     <style>
+        .controller {
+            width: 100%;
+            text-align: left;
+        }
         #tabs .tab {
+            margin: 10px;
             display: inline-block;
-            padding: 5px 10px;
+            padding: 15px 20px;
             cursor: pointer;
             z-index: 100;
+            background-color: #50ABFF;
+            border-radius: 7px;
+            color: white;
+            font-weight: bold;
+            letter-spacing: 1.1px;
+            text-transform:uppercase;
+            transition: .3s;
         }
-        #tabs .whiteborder {
-
+        #tabs .tab:hover {
+            background-color: #2D9AFF;
+        }
+        #tabs .active {
+            background-color: #4193DF;
         }
         #tabs .tabContent {
-            width: 50%;
+            width: 96%;
             padding: 10px;
             position: absolute;
-            top: 37px;
+            top: 77px;
             z-index: 10;
         }
         #tabs .hide {
@@ -28,14 +43,39 @@
         #tabs .show {
             display: block;
         }
+        @media screen and (max-width: 351px) {
+            #tabs .tabContent {
+                top: 147px;
+            }
+            .button {
+                text-align: center;
+            }
+        }
+        @media screen and (max-width: 238px) {
+            #tabs .tabContent {
+                top: 217px;
+            }
+            .button {
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
     <div id="tabs">
-        <div class="tab whiteborder">Tab 1</div>
-        <div class="tab">Tab 2</div>
-        <div class="tab">Tab 3</div>
+        <div class="controller">
+            <div class="button">
+                <div class="tab active">Tab 1</div>
+                <div class="tab">Tab 2</div>
+                <div class="tab">Tab 3</div>
+            </div>
+        </div>
         <div class="tabContent">
+            Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit. Dolor quas tempora, quod deserunt laboriosam
+            perspiciatis molestiae autem inventore consectetur delectus. Nemo
+            perferendis facilis temporibus omnis laudantium numquam
+            consequuntur, magnam nisi.
             Lorem ipsum dolor sit amet, consectetur
             adipisicing elit. Dolor quas tempora, quod deserunt laboriosam
             perspiciatis molestiae autem inventore consectetur delectus. Nemo
@@ -47,12 +87,22 @@
              Enim minus facere ullam nesciunt neque consequuntur quasi!
              Quae corrupti dolore nisi blanditiis, provident. Expedita
               consectetur, illo accusamus temporibus error minima cupiditate.
+              Lorem ipsum dolor sit amet, consectetur
+              adipisicing elit. Dolor quas tempora, quod deserunt laboriosam
+              perspiciatis molestiae autem inventore consectetur delectus. Nemo
+              perferendis facilis temporibus omnis laudantium numquam
+              consequuntur, magnam nisi.
         </div>
         <div class="tabContent">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
              Non magnam deserunt quis corrupti aliquid nulla aut, itaque
              dolore cum minus ipsa est facilis, rem nesciunt, soluta hic error,
               ad odio.
+              Lorem ipsum dolor sit amet, consectetur
+              adipisicing elit. Dolor quas tempora, quod deserunt laboriosam
+              perspiciatis molestiae autem inventore consectetur delectus. Nemo
+              perferendis facilis temporibus omnis laudantium numquam
+              consequuntur, magnam nisi.
         </div>
     </div>
     <script>
@@ -68,7 +118,7 @@
             for (let i = index; i < tabContent.length; i++) {
                 tabContent[i].classList.remove('show');
                 tabContent[i].classList.add('hide');
-                tab[i].classList.remove('whiteborder');
+                tab[i].classList.remove('active');
             }
         }
         document.querySelector('#tabs').onclick = function(event) {
@@ -84,7 +134,7 @@
         function showTabsContent(index) {
             if (tabContent[index].classList.contains('hide')) {
                 hideTabsContent(0);
-                tab[index].classList.add('whiteborder');
+                tab[index].classList.add('active');
                 tabContent[index].classList.remove('hide');
                 tabContent[index].classList.add('ahow');
             }
