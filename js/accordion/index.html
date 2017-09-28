@@ -15,7 +15,7 @@
             text-align: left;
             border: none;
             outline: none;
-            transition: .6s;
+            transition: .3s;
         }
         .accordion.active,
         .accordion:hover {
@@ -25,71 +25,74 @@
             padding: 0 18px;
             background-color: white;
             overflow: hidden;
-            transition: .6s;
-        }
-        .panel.show {
-            height: 100px;
+            transition: .3s;
         }
     </style>
 </head>
 <body>
     <button class="accordion"type="button" name="button">Section 1</button>
     <div class="panel">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
         sed do eiusmod tempor incididunt ut labore et dolore magna
         aliqua. Ut enim ad minim veniam, quis nostrud exercitation
         ullamco laboris nisi ut aliquip ex ea commodo consequat.
         Duis aute irure dolor in reprehenderit in voluptate velit
         esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
         occaecat cupidatat non proident, sunt in culpa qui officia
-        deserunt mollit anim id est laborum.
+        deserunt mollit anim id est laborum.</p>
     </div>
     <button class="accordion"type="button" name="button">Section 2</button>
     <div class="panel">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
         sed do eiusmod tempor incididunt ut labore et dolore magna
         aliqua. Ut enim ad minim veniam, quis nostrud exercitation
         ullamco laboris nisi ut aliquip ex ea commodo consequat.
         Duis aute irure dolor in reprehenderit in voluptate velit
         esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
         occaecat cupidatat non proident, sunt in culpa qui officia
-        deserunt mollit anim id est laborum.
+        deserunt mollit anim id est laborum.</p>
     </div>
     <button class="accordion"type="button" name="button">Section 3</button>
     <div class="panel">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
         sed do eiusmod tempor incididunt ut labore et dolore magna
         aliqua. Ut enim ad minim veniam, quis nostrud exercitation
         ullamco laboris nisi ut aliquip ex ea commodo consequat.
         Duis aute irure dolor in reprehenderit in voluptate velit
         esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
         occaecat cupidatat non proident, sunt in culpa qui officia
-        deserunt mollit anim id est laborum.
+        deserunt mollit anim id est laborum.</p>
     </div>
     <script type="text/javascript">
+        let height = new Array();
+        let panel = document.getElementsByClassName('panel');
+
         window.onload = function (){
-            startAcordion();
-        }
-        window.onresize = function() {
-            startAcordion();
-        }
-        function startAcordion() {
-            let panel = document.getElementsByClassName('panel');
             let acc = document.getElementsByClassName('accordion');
-            let height = new Array();
 
             for (let i = 0; i < panel.length; i++) {
-                height.push(panel[i].clientHeight);
+                height.push(panel[i].childNodes[1].clientHeight + 68 + 'px');
                 panel[i].style.height = 0;
             }
             for (let i = 0; i < acc.length; i++) {
                 acc[i].onclick = function(){
                     this.classList.toggle('active');
+
                     if (this.nextElementSibling.style.height == '0px') {
-                        this.nextElementSibling.style.height = height[i] + 'px';
+                        this.nextElementSibling.classList.add('show');
+                        this.nextElementSibling.style.height = height[i];
                     } else {
+                        this.nextElementSibling.classList.remove('show');
                         this.nextElementSibling.style.height = '0px';
                     }
+                }
+            }
+        }
+        window.onresize = function() {
+            for (let i = 0; i < panel.length; i++) {
+                height[i] = panel[i].childNodes[1].clientHeight + 68 + 'px';
+                if (panel[i].classList.contains('show')) {
+                    panel[i].style.height = height[i];
                 }
             }
         }
